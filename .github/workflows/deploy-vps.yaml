@@ -1,0 +1,44 @@
+name: Deploy to VPS
+
+on:
+  workflow_run:
+    workflows: ["Create and publish Docker images with specific build args"]
+    types: [completed]
+    branches: [main]
+
+  workflow_dispatch:
+    inputs:
+      image_tag:
+        description: 'Image tag to deploy (e.g., main, git-abc1234)'
+        default: 'main'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch'
+
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            cd ${{ secrets.VPS_DEPLOY_PATH }}
+            export WEBUI_DOCKER_TAG=${{ github.event.inputs.image_tag || 'main' }}
+
+            docker compose -f docker-compose.yaml -f docker-compose.prod.yaml pull open-webui
+            docker compose -f docker-compose.yaml -f docker-compose.prod.yaml up -d
+
+            # Health check
+            for i in {1..30}; do
+              if curl -sf http://localhost:8080/health > /dev/null 2>&1; then
+                echo "Health check passed"
+                exit 0
+              fi
+              echo "Waiting for health check... ($i/30)"
+              sleep 5
+            done
+            echo "Health check failed after 30 attempts"
+            exit 1
