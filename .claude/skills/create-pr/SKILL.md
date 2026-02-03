@@ -28,6 +28,7 @@ git status
 ```
 
 Confirm:
+
 - Not on develop or main branch
 - All changes are committed (working tree clean)
 
@@ -72,11 +73,13 @@ EOF
 ```
 
 **PR Title Guidelines:**
+
 - Keep under 70 characters
 - Use imperative form (e.g., "Add user authentication" not "Added user authentication")
 - Reference issue number if applicable (e.g., "Add login flow (#123)")
 
 **PR Body Guidelines:**
+
 - Summarize the changes in 1-3 bullet points
 - Include a test plan with specific steps
 - Reference related issues if applicable
@@ -93,6 +96,7 @@ git pull origin develop
 ### 6. Confirm Completion
 
 Report to the user:
+
 - The PR URL
 - Confirmation that the local repo is now on develop branch
 
@@ -101,10 +105,12 @@ Report to the user:
 **User request:** "Create a PR for my changes"
 
 **Actions:**
+
 1. Verify on feature branch with clean working tree
 2. Push branch: `git push -u origin feature/123-add-auth`
 3. Analyze commits and changes
 4. Create PR:
+
 ```bash
 gh pr create --base develop --title "Add user authentication (#123)" --body "$(cat <<'EOF'
 ## Summary
@@ -121,6 +127,7 @@ gh pr create --base develop --title "Add user authentication (#123)" --body "$(c
 EOF
 )"
 ```
+
 5. Switch to develop: `git checkout develop && git pull origin develop`
 6. Report PR URL and confirm on develop branch
 
@@ -133,15 +140,19 @@ EOF
 → Prompt user to commit or stash changes first
 
 **Not authenticated with gh:**
+
 ```
 gh: To get started with GitHub CLI, please run: gh auth login
 ```
+
 → Instruct user to run `gh auth login`
 
 **PR already exists:**
+
 ```
 a]pull request for branch "feature/xxx" into branch "develop" already exists
 ```
+
 → Inform user and provide link to existing PR
 
 **No commits ahead of develop:**

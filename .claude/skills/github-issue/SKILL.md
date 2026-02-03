@@ -21,10 +21,12 @@ This skill creates GitHub issues from the current repository using the `gh` CLI.
 To create an effective issue, collect the following information from the user or context:
 
 **Required:**
+
 - **Title**: Clear, concise summary (imperative form preferred, e.g., "Add dark mode support")
 - **Type**: Bug report, feature request, documentation, or general issue
 
 **For Bug Reports:**
+
 - Steps to reproduce
 - Expected behavior
 - Actual behavior
@@ -32,11 +34,13 @@ To create an effective issue, collect the following information from the user or
 - Error messages or logs if available
 
 **For Feature Requests:**
+
 - Problem or use case being addressed
 - Proposed solution
 - Alternatives considered (optional)
 
 **For Documentation Issues:**
+
 - What documentation is missing or incorrect
 - Suggested improvements
 
@@ -77,65 +81,85 @@ gh issue create --title "Issue title" --body "Issue body" --assignee "@me"
 Structure the issue body based on type:
 
 **Bug Report Template:**
+
 ```markdown
 ## Description
+
 [Brief description of the bug]
 
 ## Steps to Reproduce
+
 1. [First step]
 2. [Second step]
 3. [...]
 
 ## Expected Behavior
+
 [What should happen]
 
 ## Actual Behavior
+
 [What actually happens]
 
 ## Environment
+
 - OS: [e.g., Ubuntu 22.04]
 - Version: [e.g., v1.2.3]
 
 ## Additional Context
+
 [Any other relevant information, screenshots, or logs]
 ```
 
 **Feature Request Template:**
+
 ```markdown
 ## Problem
+
 [Describe the problem or use case]
 
 ## Proposed Solution
+
 [Describe what you'd like to happen]
 
 ## Alternatives Considered
+
 [Any alternative solutions or features you've considered]
 
 ## Additional Context
+
 [Any other context or screenshots]
 ```
 
 **Documentation Issue Template:**
+
 ```markdown
 ## Description
+
 [What documentation is missing or needs improvement]
 
 ## Location
+
 [URL or file path if known]
 
 ## Suggested Improvement
+
 [How it should be improved]
 ```
 
 **General Issue Template:**
+
 ```markdown
 ## Description
+
 [Clear description of the issue or question]
 
 ## Context
+
 [Any relevant background information]
 
 ## Additional Information
+
 [Supporting details, links, or references]
 ```
 
@@ -148,8 +172,10 @@ After successful creation, `gh` returns the issue URL. Share this with the user 
 **User request:** "Create an issue for the login button not working on mobile"
 
 **Actions:**
+
 1. Verify repo with `gh repo view`
 2. Create bug report:
+
 ```bash
 gh issue create --title "Fix login button not responding on mobile devices" --body "## Description
 The login button does not respond to taps on mobile devices.
@@ -172,8 +198,10 @@ Nothing happens when tapping the button.
 **User request:** "I want to request a dark mode feature"
 
 **Actions:**
+
 1. Verify repo with `gh repo view`
 2. Create feature request:
+
 ```bash
 gh issue create --title "Add dark mode support" --body "## Problem
 The current light-only theme can cause eye strain during extended use, especially in low-light environments.
@@ -189,19 +217,25 @@ Add a dark mode option that users can toggle in settings, with automatic detecti
 ## Error Handling
 
 **Not authenticated:**
+
 ```
 gh: To get started with GitHub CLI, please run:  gh auth login
 ```
+
 → Instruct user to run `gh auth login`
 
 **Not in a git repository:**
+
 ```
 fatal: not a git repository
 ```
+
 → Instruct user to navigate to a repository directory
 
 **No GitHub remote:**
+
 ```
 none of the git remotes configured for this repository point to a known GitHub host
 ```
+
 → Instruct user to add a GitHub remote or specify the repo with `--repo owner/repo`

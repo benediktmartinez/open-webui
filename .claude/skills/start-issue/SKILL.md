@@ -14,11 +14,13 @@ This skill prepares the local git repository for working on a new issue by follo
 To start working on an issue:
 
 1. **Checkout develop branch**
+
    ```bash
    git checkout develop
    ```
 
 2. **Pull latest changes**
+
    ```bash
    git pull origin develop
    ```
@@ -33,11 +35,13 @@ To start working on an issue:
 Feature branches follow the pattern: `feature/<issue-number>-<brief-description>`
 
 Examples:
+
 - `feature/123-add-user-authentication`
 - `feature/456-fix-login-redirect`
 - `feature/789-update-api-endpoints`
 
 Guidelines:
+
 - Use lowercase letters and hyphens
 - Keep the description brief (2-4 words)
 - Include the issue number if available
@@ -46,6 +50,7 @@ Guidelines:
 ## Usage
 
 When the user says something like:
+
 - "Start working on issue #123"
 - "Begin issue 456 for adding user auth"
 - "Create a feature branch for the new login flow"

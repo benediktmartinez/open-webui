@@ -17,6 +17,7 @@ This is a fork of Open WebUI (v0.7.2), a self-hosted AI platform for running LLM
 ## Common Commands
 
 ### Frontend Development
+
 ```bash
 npm install                    # Install dependencies
 npm run dev                    # Dev server on localhost:5173
@@ -30,6 +31,7 @@ npm run cy:open                # Cypress E2E tests
 ```
 
 ### Backend Development
+
 ```bash
 cd backend
 pip install -r requirements.txt           # Install dependencies
@@ -42,6 +44,7 @@ black .                                    # Format Python code
 ```
 
 ### Docker
+
 ```bash
 make install         # docker-compose up -d
 make startAndBuild   # docker-compose up -d --build
@@ -52,6 +55,7 @@ make update          # Pull updates and rebuild
 ## Architecture
 
 ### Directory Structure
+
 ```
 src/                          # Frontend (SvelteKit)
 ├── lib/
@@ -85,16 +89,19 @@ backend/open_webui/
 ```
 
 ### Frontend-Backend Communication
+
 1. **REST API:** TypeScript modules in `src/lib/apis/` call FastAPI endpoints at `/api/v1/`
 2. **WebSocket:** Socket.IO for real-time chat, collaborative editing, model status
 3. **SSE:** Streaming responses for LLM chat completions
 
 ### Database
+
 - Models in `backend/open_webui/models/` (Users, Chats, Messages, Files, etc.)
 - Migrations in `backend/open_webui/internal/migrations/`
 - Supports SQLite, PostgreSQL, MySQL
 
 ### RAG/Knowledge System
+
 - Document upload → loader extracts text → embeddings created → stored in vector DB
 - Query uses `#` command to inject matched content into LLM context
 - Vector DBs: ChromaDB (default), Qdrant, Weaviate, Milvus, Pinecone, etc.
@@ -112,12 +119,14 @@ WEBUI_SECRET_KEY             # Session encryption
 ## Testing
 
 Backend tests require Docker (PostgreSQL container):
+
 ```bash
 pip install -e ".[all]"                              # Install test dependencies
 python -m pytest backend/open_webui/test/            # Run all backend tests
 ```
 
 Frontend tests:
+
 ```bash
 npm run test:frontend                                # Vitest unit tests
 npm run cy:open                                      # Cypress E2E (interactive)
