@@ -16,6 +16,7 @@ env:
 jobs:
   build-main-image:
     runs-on: ${{ matrix.runner }}
+    environment: production
     permissions:
       contents: read
       packages: write
@@ -109,6 +110,7 @@ jobs:
 
   build-cuda-image:
     runs-on: ${{ matrix.runner }}
+    environment: production
     permissions:
       contents: read
       packages: write
@@ -208,6 +210,7 @@ jobs:
 
   build-cuda126-image:
     runs-on: ${{ matrix.runner }}
+    environment: production
     permissions:
       contents: read
       packages: write
@@ -308,6 +311,7 @@ jobs:
 
   build-ollama-image:
     runs-on: ${{ matrix.runner }}
+    environment: production
     permissions:
       contents: read
       packages: write
@@ -404,6 +408,7 @@ jobs:
 
   build-slim-image:
     runs-on: ${{ matrix.runner }}
+    environment: production
     permissions:
       contents: read
       packages: write
@@ -500,6 +505,7 @@ jobs:
 
   merge-main-images:
     runs-on: ubuntu-latest
+    environment: production
     needs: [build-main-image]
     steps:
       - name: Set image name
@@ -548,6 +554,7 @@ jobs:
 
   merge-cuda-images:
     runs-on: ubuntu-latest
+    environment: production
     needs: [build-cuda-image]
     steps:
       - name: Set image name
@@ -598,6 +605,7 @@ jobs:
 
   merge-cuda126-images:
     runs-on: ubuntu-latest
+    environment: production
     needs: [build-cuda126-image]
     steps:
       - name: Set image name
@@ -648,6 +656,7 @@ jobs:
 
   merge-ollama-images:
     runs-on: ubuntu-latest
+    environment: production
     needs: [build-ollama-image]
     steps:
       - name: Set image name
@@ -698,6 +707,7 @@ jobs:
 
   merge-slim-images:
     runs-on: ubuntu-latest
+    environment: production
     needs: [build-slim-image]
     steps:
       - name: Set image name
